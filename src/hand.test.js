@@ -5,18 +5,31 @@ import {
 
 import { Card, Ranks, Suits } from './card';
 
-describe('Deck', () => {
+describe('Hand', () => {
   it('exists', () => {
     expect(Hand).toBeTruthy();
   });
 
-  it('initialize empty hand', () => {
+  it('starts empty', () => {
     const hand = new Hand();
 
     expect(hand.count).toEqual(0);
   });
 
-  it('calculates value without aces', () => {
+  it('has count', () => {
+    const hand = new Hand();
+
+    const cards = [
+      new Card({ rank: Ranks.two, suit: Suits.spades }),
+      new Card({ rank: Ranks.three, suit: Suits.spades }),
+      new Card({ rank: Ranks.four, suit: Suits.spades }),
+    ];
+    hand.cards = cards;
+
+    expect(hand.count).toBe(cards.length);
+  });
+
+  it('has value without aces', () => {
     const hand = new Hand();
 
     hand.cards.push(new Card({ rank: Ranks.two, suit: Suits.spades }));
@@ -25,7 +38,7 @@ describe('Deck', () => {
     expect(hand.value).toEqual(Ranks.two.value + Ranks.nine.value);
   });
 
-  it('calculates value with one high ace', () => {
+  it('has value with one high ace', () => {
     const hand = new Hand();
 
     hand.cards.push(new Card({ rank: Ranks.ace, suit: Suits.spades }));
@@ -34,7 +47,7 @@ describe('Deck', () => {
     expect(hand.value).toEqual(Ranks.ace.highValue + Ranks.nine.value);
   });
 
-  it('calculates value with exactly two aces', () => {
+  it('has value with exactly two aces', () => {
     const hand = new Hand();
 
     hand.cards.push(new Card({ rank: Ranks.ace, suit: Suits.spades }));
@@ -43,7 +56,7 @@ describe('Deck', () => {
     expect(hand.value).toEqual(Ranks.ace.highValue + Ranks.ace.value);
   });
 
-  it('calculates value with one high and one low ace', () => {
+  it('has value with one high and one low ace', () => {
     const hand = new Hand();
 
     hand.cards.push(new Card({ rank: Ranks.ace, suit: Suits.spades }));
@@ -53,7 +66,7 @@ describe('Deck', () => {
     expect(hand.value).toEqual(sum([Ranks.ace.highValue, Ranks.ace.value, Ranks.five.value]));
   });
 
-  it('calculates non-blackjack', () => {
+  it('does not have blackjack', () => {
     const hand = new Hand();
 
     hand.cards.push(new Card({ rank: Ranks.king, suit: Suits.spades }));
@@ -63,7 +76,7 @@ describe('Deck', () => {
     expect(hand.blackjack).toBe(false);
   });
 
-  it('calculates blackjack', () => {
+  it('has blackjack', () => {
     const hand = new Hand();
 
     hand.cards.push(new Card({ rank: Ranks.king, suit: Suits.spades }));
@@ -73,7 +86,7 @@ describe('Deck', () => {
     expect(hand.blackjack).toBe(true);
   });
 
-  it('calculates twenty-one', () => {
+  it('has twenty-one', () => {
     const hand = new Hand();
 
     hand.cards.push(new Card({ rank: Ranks.four, suit: Suits.spades }));
@@ -84,7 +97,7 @@ describe('Deck', () => {
     expect(hand.twentyOne).toBe(true);
   });
 
-  it('calculates bust', () => {
+  it('busts', () => {
     const hand = new Hand();
 
     hand.cards.push(new Card({ rank: Ranks.ten, suit: Suits.spades }));
@@ -92,5 +105,16 @@ describe('Deck', () => {
     hand.cards.push(new Card({ rank: Ranks.three, suit: Suits.hearts }));
 
     expect(hand.bust).toBe(true);
+  });
+
+  it('resets', () => {
+    const hand = new Hand();
+
+    hand.cards.push(new Card({ rank: Ranks.ten, suit: Suits.spades }));
+    hand.cards.push(new Card({ rank: Ranks.nine, suit: Suits.clubs }));
+
+    hand.reset();
+
+    expect(hand.count).toBe(0);
   });
 });

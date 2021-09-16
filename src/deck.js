@@ -5,14 +5,14 @@ const chance = new Chance();
 
 const Deck = class {
   constructor({ shuffled = true } = {}) {
-    this.initialize();
+    this.reset();
 
     if (shuffled) {
       this.shuffle();
     }
   }
 
-  initialize() {
+  reset() {
     this.cards = [];
 
     Object.keys(Ranks).forEach((rank) => {
@@ -28,6 +28,10 @@ const Deck = class {
 
   shuffle() {
     this.cards = chance.shuffle(this.cards);
+  }
+
+  draw() {
+    return this.cards.pop();
   }
 };
 

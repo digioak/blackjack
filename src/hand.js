@@ -4,10 +4,10 @@ import { Ranks } from './card';
 
 const Hand = class {
   constructor() {
-    this.initialize();
+    this.reset();
   }
 
-  initialize() {
+  reset() {
     this.cards = [];
   }
 
