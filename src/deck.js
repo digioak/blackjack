@@ -17,7 +17,7 @@ const Deck = class {
 
     Object.keys(Ranks).forEach((rank) => {
       Object.keys(Suits).forEach((suit) => {
-        this.cards.push(new Card({ rank, suit }));
+        this.cards.push(new Card({ rank: Ranks[rank], suit: Suits[suit] }));
       });
     });
   }

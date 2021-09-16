@@ -1,3 +1,5 @@
+import { first } from 'lodash';
+import { Ranks } from './card';
 import {
   Deck,
 } from './deck';
@@ -10,9 +12,10 @@ describe('Deck', () => {
   });
 
   it('initializes', () => {
-    const deck = new Deck();
+    const deck = new Deck({ shuffled: false });
 
     expect(deck.count).toBe(CARDS_PER_DECK);
+    expect(first(deck.cards).rank).toBe(Ranks.ace);
   });
 
   it('resets', () => {

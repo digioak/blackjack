@@ -1,6 +1,8 @@
 import { Deck } from './deck';
 import { Hand } from './hand';
 
+const MIN_HAND_VALUE = 17;
+
 const Dealer = class {
   constructor() {
     this.deck = new Deck({ shuffled: true });
@@ -15,6 +17,12 @@ const Dealer = class {
   hit() {
     this.deal({ target: this });
   }
+
+  resolve() {
+    while (this.hand.value <= MIN_HAND_VALUE) {
+      this.hit();
+    }
+  }
 };
 
-export { Dealer };
+export { Dealer, MIN_HAND_VALUE };

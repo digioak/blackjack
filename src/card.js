@@ -18,6 +18,12 @@ const Suits = {
 };
 
 const Ranks = {
+  ace: {
+    id: 'a',
+    label: 'Ace',
+    value: 1,
+    highValue: 11,
+  },
   two: {
     id: '2',
     label: 'Two',
@@ -77,12 +83,6 @@ const Ranks = {
     id: 'k',
     label: 'King',
     value: 10,
-  },
-  ace: {
-    id: 'a',
-    label: 'Ace',
-    value: 1,
-    highValue: 11,
   },
 };
 
