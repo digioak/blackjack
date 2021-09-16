@@ -5,6 +5,14 @@ const chance = new Chance();
 
 const Deck = class {
   constructor({ shuffled = true } = {}) {
+    this.initialize();
+
+    if (shuffled) {
+      this.shuffle();
+    }
+  }
+
+  initialize() {
     this.cards = [];
 
     Object.keys(Ranks).forEach((rank) => {
@@ -12,10 +20,10 @@ const Deck = class {
         this.cards.push(new Card({ rank, suit }));
       });
     });
+  }
 
-    if (shuffled) {
-      this.shuffle();
-    }
+  get count() {
+    return this.cards.length;
   }
 
   shuffle() {

@@ -82,6 +82,7 @@ const Ranks = {
     id: 'a',
     label: 'Ace',
     value: 1,
+    highValue: 11,
   },
 };
 
