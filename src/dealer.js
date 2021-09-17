@@ -9,19 +9,21 @@ const Dealer = class {
     this.hand = new Hand();
   }
 
-  deal({ target }) {
+  deal({ target, faceUp = false }) {
     const card = this.deck.draw();
+    card.faceUp = faceUp;
     target.hand.cards.push(card);
   }
 
   hit() {
-    this.deal({ target: this });
+    this.deal({ target: this, faceUp: true });
   }
 
-  resolve() {
+  takeTurn() {
     while (this.hand.value <= MIN_HAND_VALUE) {
       this.hit();
     }
+    this.hand.reveal();
   }
 };
 

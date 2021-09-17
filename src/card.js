@@ -26,47 +26,47 @@ const Ranks = {
   },
   two: {
     id: '2',
-    label: 'Two',
+    label: '2',
     value: 2,
   },
   three: {
     id: '3',
-    label: 'Three',
+    label: '3',
     value: 3,
   },
   four: {
     id: '4',
-    label: 'Four',
+    label: '4',
     value: 4,
   },
   five: {
     id: '5',
-    label: 'Five',
+    label: '5',
     value: 5,
   },
   six: {
     id: '6',
-    label: 'Six',
+    label: '6',
     value: 6,
   },
   seven: {
     id: '7',
-    label: 'Seven',
+    label: '7',
     value: 7,
   },
   eight: {
     id: '8',
-    label: 'Eight',
+    label: '8',
     value: 8,
   },
   nine: {
     id: '9',
-    label: 'Nine',
+    label: '9',
     value: 9,
   },
   ten: {
     id: '10',
-    label: 'Ten',
+    label: '10',
     value: 10,
   },
   jack: {
@@ -105,7 +105,7 @@ const Card = class {
 
   show() {
     if (this.faceUp) {
-      return `${this.rank.label} of ${this.suit.label}`;
+      return `(${this.rank.label} ${this.suit.label})`;
     }
 
     return CardBack;

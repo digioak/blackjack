@@ -56,7 +56,7 @@ describe('Dealer', () => {
     expect(dealer.hand.value).toBeGreaterThanOrEqual(1);
   });
 
-  it('resolves', () => {
+  it('takes turn', () => {
     const dealer = new Dealer();
 
     dealer.hand.cards = [
@@ -66,7 +66,7 @@ describe('Dealer', () => {
 
     const initialHandSize = dealer.hand.count;
 
-    dealer.resolve();
+    dealer.takeTurn();
 
     expect(dealer.hand.count).toBeGreaterThan(initialHandSize);
     expect(dealer.hand.value).toBeGreaterThanOrEqual(MIN_HAND_VALUE);

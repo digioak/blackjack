@@ -37,6 +37,14 @@ const Hand = class {
           : sum + card.rank.value), 0)
       .value();
   }
+
+  show() {
+    return this.cards.map((card) => card.show()).join(' ');
+  }
+
+  reveal() {
+    this.cards.forEach((card) => { card.faceUp = true; });
+  }
 };
 
 export { Hand };

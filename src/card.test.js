@@ -16,7 +16,8 @@ describe('Card', () => {
   it('can create new card face up', () => {
     const card = new Card({ rank: Ranks.ace, suit: Suits.spades, faceUp: true });
 
-    expect(card.show()).toEqual(`${Ranks.ace.label} of ${Suits.spades.label}`);
+    expect(card.show()).toContain(Ranks.ace.label);
+    expect(card.show()).toContain(Suits.spades.label);
   });
 
   it('has correct card value', () => {
@@ -29,6 +30,7 @@ describe('Card', () => {
     const card = new Card({ rank: Ranks.jack, suit: Suits.clubs });
     card.flip();
 
-    expect(card.show()).toEqual(`${Ranks.jack.label} of ${Suits.clubs.label}`);
+    expect(card.show()).toContain(Ranks.jack.label);
+    expect(card.show()).toContain(Suits.clubs.label);
   });
 });

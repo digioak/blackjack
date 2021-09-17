@@ -1,7 +1,5 @@
-import Chance from 'chance';
+import { shuffle } from 'lodash';
 import { Card, Ranks, Suits } from './card';
-
-const chance = new Chance();
 
 const Deck = class {
   constructor({ shuffled = true } = {}) {
@@ -27,7 +25,7 @@ const Deck = class {
   }
 
   shuffle() {
-    this.cards = chance.shuffle(this.cards);
+    this.cards = shuffle(this.cards);
   }
 
   draw() {
