@@ -12,6 +12,10 @@ const Player = class {
     dealer.deal({ target: this, faceUp: true });
   }
 
+  buyIn({ amount }) {
+    this.balance -= amount;
+  }
+
   takeTurn({ dealer }) {
     let stay = false;
     const options = ['Hit', 'Stay'];

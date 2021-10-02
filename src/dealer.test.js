@@ -1,6 +1,5 @@
-import { Card, Ranks, Suits } from './card';
 import {
-  Dealer, MIN_HAND_VALUE,
+  Dealer,
 } from './dealer';
 import { Player } from './player';
 
@@ -54,21 +53,5 @@ describe('Dealer', () => {
 
     expect(dealer.hand.count).toBe(1);
     expect(dealer.hand.value).toBeGreaterThanOrEqual(1);
-  });
-
-  it('takes turn', () => {
-    const dealer = new Dealer();
-
-    dealer.hand.cards = [
-      new Card({ rank: Ranks.two, suit: Suits.diamonds }),
-      new Card({ rank: Ranks.three, suit: Suits.diamonds }),
-    ];
-
-    const initialHandSize = dealer.hand.count;
-
-    dealer.takeTurn();
-
-    expect(dealer.hand.count).toBeGreaterThan(initialHandSize);
-    expect(dealer.hand.value).toBeGreaterThanOrEqual(MIN_HAND_VALUE);
   });
 });

@@ -1,8 +1,6 @@
 import { Deck } from './deck';
 import { Hand } from './hand';
 
-const MIN_HAND_VALUE = 17;
-
 const Dealer = class {
   constructor() {
     this.deck = new Deck({ shuffled: true });
@@ -15,16 +13,20 @@ const Dealer = class {
     target.hand.cards.push(card);
   }
 
+  payOut({ target, amount }) {
+    target.balance += amount;
+  }
+
   hit() {
     this.deal({ target: this, faceUp: true });
   }
 
-  takeTurn() {
-    while (this.hand.value <= MIN_HAND_VALUE) {
+  takeTurn({ player }) {
+    while (this.hand.value < player.hand.value) {
       this.hit();
     }
     this.hand.reveal();
   }
 };
 
-export { Dealer, MIN_HAND_VALUE };
+export { Dealer };

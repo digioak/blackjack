@@ -52,26 +52,26 @@ const Game = class {
 
     if (this.dealer.hand.bust) {
       console.log('Dealer busts, you win!');
-      this.player.balance += this.costPerRound * 2;
+      this.dealer.payOut({ target: this.player, amount: this.costPerRound * 2 });
     } else if (this.player.hand.value > this.dealer.hand.value) {
       console.log('You win!');
-      this.player.balance += this.costPerRound * 2;
+      this.dealer.payOut({ target: this.player, amount: this.costPerRound * 2 });
     } else if (this.player.hand.value === this.dealer.hand.value) {
       console.log("It's a push.");
-      this.player.balance += this.costPerRound;
+      this.dealer.payOut({ target: this.player, amount: this.costPerRound });
     } else {
       console.log('You lose, sorry.');
     }
   }
 
   start() {
-    console.log('Welcome to blackjack!');
+    console.log("Welcome to Oak's Blackjack!");
     console.log(`Each hand costs $${this.costPerRound}, here we go!`);
 
     this.inProgress = true;
 
     while (this.inProgress && this.player.balance > 0) {
-      this.player.balance -= this.costPerRound;
+      this.player.buyIn({ amount: this.costPerRound });
       console.log(`\nYour balance is $${this.player.balance}.\n`);
 
       this.reset();
@@ -93,11 +93,15 @@ const Game = class {
         continue;
       }
 
-      this.dealer.takeTurn();
+      this.dealer.takeTurn({ player: this.player });
 
       this.resolve();
 
       sleep(3000);
+    }
+
+    if (this.player.balance <= 0) {
+      console.log('Out of funds... better luck next time!');
     }
   }
 };
