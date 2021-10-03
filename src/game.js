@@ -93,7 +93,7 @@ const Game = class {
         continue;
       }
 
-      this.dealer.takeTurn({ player: this.player });
+      this.dealer.takeTurn();
 
       this.resolve();
 
